@@ -1,0 +1,60 @@
+use case là gì
+5 sai lầm khi vẽ use case
+đặc tả use case
+
+java : swing
+.net : winform
+làm trên web :jsp/sevlet -->java
+	       asp.net --> .net
+
+tạo CSDL
+kết nối
+Model - View - Controller
+không dùng framework
+
+hệ thống có bao nhiêu phân quyền, đối tượng sử dụng, các chức năng gì
+sharecode.vn
+
+
+f8 channel
+html/css 
+javascript
+
+figma : design tool --> không cần thiết phải làm
+
+use case + biểu đồ lớp + csdl --> chú ý trong báo cáo
+
+----------------------
+cách ghi tài liệu tham khảo
+sử dụng phần mềm endnote
+quan tâm đến mức ở các use case
+phân rã use case theo chức năng
+có thể bỏ qua software interfaces
+sử dụng nhiều version báo cáo --> viết nhiều lần
+
+--> Tên: Xây dựng ứng dụng quán lý cửa hàng thức ăn nhanh
+--> 2 chức năng chính : nhân viên, bán hàng
+mô hình thực thể-->logic-->các bảng .....
+
+
+code demo module
+
+HIENLTH Channel
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

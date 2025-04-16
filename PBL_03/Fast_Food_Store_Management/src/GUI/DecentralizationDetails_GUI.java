@@ -1,0 +1,880 @@
+/*
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+ * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
+ */
+package GUI;
+
+import BUS.DecentralizationDetail_BUS;
+import BUS.Decentralization_BUS;
+import DTO.Decentralization;
+import DTO.DecentralizationDetail;
+import java.awt.Color;
+import java.util.ArrayList;
+import javax.swing.JOptionPane;
+
+public class DecentralizationDetails_GUI extends javax.swing.JFrame {
+
+    private Decentralization_BUS dcBUS = new Decentralization_BUS();
+    private DecentralizationDetail_BUS dcdtBUS = new DecentralizationDetail_BUS();
+    private DecentralizationDetail dcdt = new DecentralizationDetail();
+    private Decentralization dc;
+    private String decenId;
+    private String action;
+    private Decentralization_GUI decentralization_GUI;
+    private Home_GUI home_GUI;
+    
+    /**
+     * Creates new form DecentralizationDetails_GUI
+     */
+    public DecentralizationDetails_GUI(String decenId, Decentralization_GUI gui, Home_GUI home) {
+        initComponents();
+        this.setBackground(new Color(0,0,0,0));
+        this.decentralization_GUI = gui;
+        this.home_GUI = home;
+        if(decenId!=null){
+           this.decenId = decenId;
+           this.action = "update";
+           dcdt = dcdtBUS.readById(this.decenId);
+           renderContents(); 
+        }
+        else{
+            this.action = "create";
+            autoGenerateId();
+        }
+        
+        setVisible(true);
+    }
+
+    public DecentralizationDetails_GUI() {
+        setVisible(false);
+    }
+    
+    public void autoGenerateId() {
+        String id = "DC0";
+        int num = 1;
+        String check_id;
+        ArrayList<String> idList = dcBUS.readAllId();
+        for(String item : idList) {
+            check_id = id + num;
+            if(idList.contains(check_id)) num++;
+        }
+        id += num;
+        txtDecentralizationID.setText(id);
+    }
+    
+    public void renderContents(){
+        txtDecentralizationID.setText(dcdt.getDecentralizeID());
+        txtDecentralizationName.setText(dcdtBUS.getNameById(decenId));
+        if(dcdt.getIsSale()!=0){
+            cbxSale.setSelected(true);
+            combbxSale.setEnabled(true);
+            if(dcdt.getIsSale()==1) combbxSale.setSelectedIndex(0);
+            else combbxSale.setSelectedIndex(1);
+        }
+        if(dcdt.getIsRecept()!=0){
+            cbxRecieved.setSelected(true);
+            combbxReceived.setEnabled(true);
+            if(dcdt.getIsRecept()==1) combbxReceived.setSelectedIndex(0);
+            else combbxReceived.setSelectedIndex(1);
+        }
+        if(dcdt.getIsProduct()!=0){
+            cbxProduct.setSelected(true);
+            combbxProduct.setEnabled(true);
+            if(dcdt.getIsProduct()==1) combbxProduct.setSelectedIndex(0);
+            else combbxProduct.setSelectedIndex(1);
+        }
+        if(dcdt.getIsCategory()!=0){
+            cbxCategory.setSelected(true);
+            combbxCategory.setEnabled(true);
+            if(dcdt.getIsCategory()==1) combbxCategory.setSelectedIndex(0);
+            else combbxCategory.setSelectedIndex(1);
+        }
+        if(dcdt.getIsBill()!=0){
+            cbxBill.setSelected(true);
+            combbxBill.setEnabled(true);
+            if(dcdt.getIsBill()==1) combbxBill.setSelectedIndex(0);
+            else combbxBill.setSelectedIndex(1);
+        }
+        if(dcdt.getIsDiscount()!=0){
+            cbxDiscount.setSelected(true);
+            combbxDiscount.setEnabled(true);
+            if(dcdt.getIsDiscount()==1) combbxDiscount.setSelectedIndex(0);
+            else combbxDiscount.setSelectedIndex(1);
+        }
+        if(dcdt.getIsCustomer()!=0){
+            cbxCustomer.setSelected(true);
+            combbxCustomer.setEnabled(true);
+            if(dcdt.getIsCustomer()==1) combbxCustomer.setSelectedIndex(0);
+            else combbxCustomer.setSelectedIndex(1);
+        }
+        if(dcdt.getIsStaff()!=0){
+            cbxStaff.setSelected(true);
+            combbxStaff.setEnabled(true);
+            if(dcdt.getIsStaff()==1) combbxStaff.setSelectedIndex(0);
+            else combbxStaff.setSelectedIndex(1);
+        }
+        if(dcdt.getIsAccount()!=0){
+            cbxAccount.setSelected(true);
+            combbxAccount.setEnabled(true);
+            if(dcdt.getIsAccount()==1) combbxAccount.setSelectedIndex(0);
+            else combbxAccount.setSelectedIndex(1);
+        }
+        if(dcdt.getIsDecentralize()!=0){
+            cbxDecentralize.setSelected(true);
+            combbxDecentralize.setEnabled(true);
+            if(dcdt.getIsDecentralize()==1) combbxDecentralize.setSelectedIndex(0);
+            else combbxDecentralize.setSelectedIndex(1);
+        }
+    }
+
+    /**
+     * This method is called from within the constructor to initialize the form.
+     * WARNING: Do NOT modify this code. The content of this method is always
+     * regenerated by the Form Editor.
+     */
+    @SuppressWarnings("unchecked")
+    // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
+    private void initComponents() {
+
+        roundPanel1 = new Custom.RoundPanel();
+        btnAdd = new Custom.Button();
+        btnCancel = new Custom.Button();
+        button3 = new Custom.Button();
+        button2 = new Custom.Button();
+        jPanel1 = new javax.swing.JPanel();
+        roundPanel2 = new Custom.RoundPanel();
+        txtDecentralizationID = new javax.swing.JTextField();
+        txtDecentralizationName = new javax.swing.JTextField();
+        roundPanel3 = new Custom.RoundPanel();
+        scrDecentralizationDetails = new javax.swing.JScrollPane();
+        pnlDecentralizationDetails = new Custom.RoundPanel();
+        cbxSale = new javax.swing.JCheckBox();
+        combbxSale = new javax.swing.JComboBox<>();
+        cbxRecieved = new javax.swing.JCheckBox();
+        combbxReceived = new javax.swing.JComboBox<>();
+        cbxProduct = new javax.swing.JCheckBox();
+        combbxProduct = new javax.swing.JComboBox<>();
+        combbxCategory = new javax.swing.JComboBox<>();
+        cbxCategory = new javax.swing.JCheckBox();
+        combbxBill = new javax.swing.JComboBox<>();
+        cbxBill = new javax.swing.JCheckBox();
+        cbxDiscount = new javax.swing.JCheckBox();
+        combbxDiscount = new javax.swing.JComboBox<>();
+        combbxCustomer = new javax.swing.JComboBox<>();
+        cbxCustomer = new javax.swing.JCheckBox();
+        combbxStaff = new javax.swing.JComboBox<>();
+        cbxStaff = new javax.swing.JCheckBox();
+        combbxAccount = new javax.swing.JComboBox<>();
+        cbxAccount = new javax.swing.JCheckBox();
+        cbxDecentralize = new javax.swing.JCheckBox();
+        combbxDecentralize = new javax.swing.JComboBox<>();
+
+        setLocation(new java.awt.Point(500, 70));
+        setUndecorated(true);
+
+        roundPanel1.setBackground(new java.awt.Color(51, 51, 51));
+        roundPanel1.setPreferredSize(new java.awt.Dimension(380, 538));
+        roundPanel1.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
+            public void mouseDragged(java.awt.event.MouseEvent evt) {
+                roundPanel1MouseDragged(evt);
+            }
+        });
+        roundPanel1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                roundPanel1MousePressed(evt);
+            }
+        });
+
+        btnAdd.setBackground(new java.awt.Color(240, 240, 240));
+        btnAdd.setBorder(null);
+        btnAdd.setText("Lưu");
+        btnAdd.setColor(new java.awt.Color(240, 240, 240));
+        btnAdd.setColorClick(new java.awt.Color(255, 255, 255));
+        btnAdd.setColorOver(new java.awt.Color(255, 255, 255));
+        btnAdd.setFocusable(false);
+        btnAdd.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
+        btnAdd.setRadius(20);
+        btnAdd.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnAddMouseClicked(evt);
+            }
+        });
+
+        btnCancel.setBackground(new java.awt.Color(240, 240, 240));
+        btnCancel.setBorder(null);
+        btnCancel.setText("Hủy");
+        btnCancel.setColor(new java.awt.Color(240, 240, 240));
+        btnCancel.setColorClick(new java.awt.Color(255, 255, 255));
+        btnCancel.setColorOver(new java.awt.Color(255, 255, 255));
+        btnCancel.setFocusable(false);
+        btnCancel.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
+        btnCancel.setRadius(20);
+        btnCancel.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnCancelMouseClicked(evt);
+            }
+        });
+
+        button3.setBorder(null);
+        button3.setText("-");
+        button3.setFocusPainted(false);
+        button3.setFont(new java.awt.Font("Times New Roman", 0, 16)); // NOI18N
+        button3.setMaximumSize(new java.awt.Dimension(43, 25));
+        button3.setMinimumSize(new java.awt.Dimension(43, 25));
+        button3.setRadius(15);
+        button3.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                button3MouseClicked(evt);
+            }
+        });
+
+        button2.setBorder(null);
+        button2.setText("X");
+        button2.setFocusPainted(false);
+        button2.setFont(new java.awt.Font("Times New Roman", 0, 12)); // NOI18N
+        button2.setRadius(15);
+        button2.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                button2MouseClicked(evt);
+            }
+        });
+
+        jPanel1.setBackground(new java.awt.Color(51, 51, 51));
+        jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 11), new java.awt.Color(255, 255, 255))); // NOI18N
+
+        roundPanel2.setBackground(new java.awt.Color(255, 255, 255));
+        roundPanel2.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
+            public void mouseDragged(java.awt.event.MouseEvent evt) {
+                roundPanel2MouseDragged(evt);
+            }
+        });
+        roundPanel2.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                roundPanel2MousePressed(evt);
+            }
+        });
+
+        txtDecentralizationID.setEditable(false);
+        txtDecentralizationID.setBackground(new java.awt.Color(255, 255, 255));
+        txtDecentralizationID.setFont(new java.awt.Font("Times New Roman", 0, 11)); // NOI18N
+        txtDecentralizationID.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        txtDecentralizationID.setText("Q1");
+        txtDecentralizationID.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Mã Quyền", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Times New Roman", 1, 12))); // NOI18N
+        txtDecentralizationID.setDisabledTextColor(new java.awt.Color(0, 0, 0));
+        txtDecentralizationID.setDoubleBuffered(true);
+
+        txtDecentralizationName.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        txtDecentralizationName.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Tên Quyền", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Times New Roman", 1, 12))); // NOI18N
+        txtDecentralizationName.setDisabledTextColor(new java.awt.Color(0, 0, 0));
+        txtDecentralizationName.setDoubleBuffered(true);
+
+        javax.swing.GroupLayout roundPanel2Layout = new javax.swing.GroupLayout(roundPanel2);
+        roundPanel2.setLayout(roundPanel2Layout);
+        roundPanel2Layout.setHorizontalGroup(
+            roundPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(roundPanel2Layout.createSequentialGroup()
+                .addGap(12, 12, 12)
+                .addComponent(txtDecentralizationID)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(txtDecentralizationName, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
+        );
+        roundPanel2Layout.setVerticalGroup(
+            roundPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(roundPanel2Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(roundPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(txtDecentralizationID, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtDecentralizationName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+
+        roundPanel3.setBackground(new java.awt.Color(255, 255, 255));
+        roundPanel3.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
+            public void mouseDragged(java.awt.event.MouseEvent evt) {
+                roundPanel3MouseDragged(evt);
+            }
+        });
+        roundPanel3.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                roundPanel3MousePressed(evt);
+            }
+        });
+
+        scrDecentralizationDetails.setBackground(new java.awt.Color(255, 255, 255));
+        scrDecentralizationDetails.setBorder(javax.swing.BorderFactory.createTitledBorder("Chi tiết quyền"));
+        scrDecentralizationDetails.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
+            public void mouseDragged(java.awt.event.MouseEvent evt) {
+                roundPanel3MouseDragged(evt);
+            }
+        });
+        scrDecentralizationDetails.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                roundPanel3MousePressed(evt);
+            }
+        });
+
+        pnlDecentralizationDetails.setBackground(new java.awt.Color(255, 255, 255));
+
+        cbxSale.setBackground(new java.awt.Color(255, 255, 255));
+        cbxSale.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
+        cbxSale.setText("Bán Hàng");
+        cbxSale.setFocusable(false);
+        cbxSale.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                cbxSaleItemStateChanged(evt);
+            }
+        });
+
+        combbxSale.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
+        combbxSale.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Chỉ xem", "Quản lý" }));
+        combbxSale.setEnabled(false);
+
+        cbxRecieved.setBackground(new java.awt.Color(255, 255, 255));
+        cbxRecieved.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
+        cbxRecieved.setText("Nhập Hàng");
+        cbxRecieved.setFocusable(false);
+        cbxRecieved.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                cbxRecievedItemStateChanged(evt);
+            }
+        });
+
+        combbxReceived.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
+        combbxReceived.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Chỉ xem", "Quản lý" }));
+        combbxReceived.setEnabled(false);
+
+        cbxProduct.setBackground(new java.awt.Color(255, 255, 255));
+        cbxProduct.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
+        cbxProduct.setText("Sản phẩm");
+        cbxProduct.setFocusable(false);
+        cbxProduct.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                cbxProductItemStateChanged(evt);
+            }
+        });
+
+        combbxProduct.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
+        combbxProduct.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Chỉ xem", "Quản lý" }));
+        combbxProduct.setEnabled(false);
+
+        combbxCategory.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
+        combbxCategory.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Chỉ xem", "Quản lý" }));
+        combbxCategory.setEnabled(false);
+
+        cbxCategory.setBackground(new java.awt.Color(255, 255, 255));
+        cbxCategory.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
+        cbxCategory.setText("Loại sản phẩm");
+        cbxCategory.setFocusable(false);
+        cbxCategory.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                cbxCategoryItemStateChanged(evt);
+            }
+        });
+
+        combbxBill.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
+        combbxBill.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Chỉ xem", "Quản lý" }));
+        combbxBill.setEnabled(false);
+
+        cbxBill.setBackground(new java.awt.Color(255, 255, 255));
+        cbxBill.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
+        cbxBill.setText("Hóa đơn");
+        cbxBill.setFocusable(false);
+        cbxBill.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                cbxBillItemStateChanged(evt);
+            }
+        });
+
+        cbxDiscount.setBackground(new java.awt.Color(255, 255, 255));
+        cbxDiscount.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
+        cbxDiscount.setText("Khuyến Mãi");
+        cbxDiscount.setFocusable(false);
+        cbxDiscount.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                cbxDiscountItemStateChanged(evt);
+            }
+        });
+
+        combbxDiscount.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
+        combbxDiscount.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Chỉ xem", "Quản lý" }));
+        combbxDiscount.setEnabled(false);
+
+        combbxCustomer.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
+        combbxCustomer.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Chỉ xem", "Quản lý" }));
+        combbxCustomer.setEnabled(false);
+
+        cbxCustomer.setBackground(new java.awt.Color(255, 255, 255));
+        cbxCustomer.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
+        cbxCustomer.setText("Khách Hàng");
+        cbxCustomer.setFocusable(false);
+        cbxCustomer.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                cbxCustomerItemStateChanged(evt);
+            }
+        });
+
+        combbxStaff.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
+        combbxStaff.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Chỉ xem", "Quản lý" }));
+        combbxStaff.setEnabled(false);
+
+        cbxStaff.setBackground(new java.awt.Color(255, 255, 255));
+        cbxStaff.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
+        cbxStaff.setText("Nhân Viên");
+        cbxStaff.setFocusable(false);
+        cbxStaff.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                cbxStaffItemStateChanged(evt);
+            }
+        });
+
+        combbxAccount.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
+        combbxAccount.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Chỉ xem", "Quản lý" }));
+        combbxAccount.setEnabled(false);
+
+        cbxAccount.setBackground(new java.awt.Color(255, 255, 255));
+        cbxAccount.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
+        cbxAccount.setText("Tài Khoản");
+        cbxAccount.setFocusable(false);
+        cbxAccount.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                cbxAccountItemStateChanged(evt);
+            }
+        });
+
+        cbxDecentralize.setBackground(new java.awt.Color(255, 255, 255));
+        cbxDecentralize.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
+        cbxDecentralize.setText("Phân Quyền");
+        cbxDecentralize.setFocusable(false);
+        cbxDecentralize.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                cbxDecentralizeItemStateChanged(evt);
+            }
+        });
+
+        combbxDecentralize.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
+        combbxDecentralize.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Chỉ xem", "Quản lý" }));
+        combbxDecentralize.setEnabled(false);
+
+        javax.swing.GroupLayout pnlDecentralizationDetailsLayout = new javax.swing.GroupLayout(pnlDecentralizationDetails);
+        pnlDecentralizationDetails.setLayout(pnlDecentralizationDetailsLayout);
+        pnlDecentralizationDetailsLayout.setHorizontalGroup(
+            pnlDecentralizationDetailsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pnlDecentralizationDetailsLayout.createSequentialGroup()
+                .addGap(21, 21, 21)
+                .addGroup(pnlDecentralizationDetailsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(pnlDecentralizationDetailsLayout.createSequentialGroup()
+                        .addComponent(cbxDecentralize, javax.swing.GroupLayout.PREFERRED_SIZE, 134, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(combbxDecentralize, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(pnlDecentralizationDetailsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(pnlDecentralizationDetailsLayout.createSequentialGroup()
+                            .addComponent(cbxSale, javax.swing.GroupLayout.PREFERRED_SIZE, 134, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                            .addComponent(combbxSale, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGroup(pnlDecentralizationDetailsLayout.createSequentialGroup()
+                            .addComponent(cbxRecieved, javax.swing.GroupLayout.PREFERRED_SIZE, 134, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                            .addComponent(combbxReceived, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlDecentralizationDetailsLayout.createSequentialGroup()
+                            .addComponent(cbxProduct, javax.swing.GroupLayout.PREFERRED_SIZE, 134, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                            .addComponent(combbxProduct, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGroup(pnlDecentralizationDetailsLayout.createSequentialGroup()
+                            .addComponent(cbxCategory, javax.swing.GroupLayout.PREFERRED_SIZE, 134, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                            .addComponent(combbxCategory, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlDecentralizationDetailsLayout.createSequentialGroup()
+                            .addComponent(cbxBill, javax.swing.GroupLayout.PREFERRED_SIZE, 134, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                            .addComponent(combbxBill, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGroup(pnlDecentralizationDetailsLayout.createSequentialGroup()
+                            .addComponent(cbxDiscount, javax.swing.GroupLayout.PREFERRED_SIZE, 134, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                            .addComponent(combbxDiscount, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGroup(pnlDecentralizationDetailsLayout.createSequentialGroup()
+                            .addComponent(cbxCustomer, javax.swing.GroupLayout.PREFERRED_SIZE, 134, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                            .addComponent(combbxCustomer, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGroup(pnlDecentralizationDetailsLayout.createSequentialGroup()
+                            .addComponent(cbxStaff, javax.swing.GroupLayout.PREFERRED_SIZE, 134, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                            .addComponent(combbxStaff, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGroup(pnlDecentralizationDetailsLayout.createSequentialGroup()
+                            .addComponent(cbxAccount, javax.swing.GroupLayout.PREFERRED_SIZE, 134, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                            .addComponent(combbxAccount, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+        pnlDecentralizationDetailsLayout.setVerticalGroup(
+            pnlDecentralizationDetailsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pnlDecentralizationDetailsLayout.createSequentialGroup()
+                .addGap(16, 16, 16)
+                .addGroup(pnlDecentralizationDetailsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(cbxSale)
+                    .addComponent(combbxSale, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(pnlDecentralizationDetailsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(cbxRecieved)
+                    .addComponent(combbxReceived, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(pnlDecentralizationDetailsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(cbxProduct)
+                    .addComponent(combbxProduct, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(16, 16, 16)
+                .addGroup(pnlDecentralizationDetailsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(cbxCategory)
+                    .addComponent(combbxCategory, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(pnlDecentralizationDetailsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(cbxBill)
+                    .addComponent(combbxBill, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(pnlDecentralizationDetailsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(cbxDiscount)
+                    .addComponent(combbxDiscount, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(pnlDecentralizationDetailsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(cbxCustomer)
+                    .addComponent(combbxCustomer, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(pnlDecentralizationDetailsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(cbxStaff)
+                    .addComponent(combbxStaff, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(pnlDecentralizationDetailsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(cbxAccount)
+                    .addComponent(combbxAccount, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(pnlDecentralizationDetailsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(cbxDecentralize)
+                    .addComponent(combbxDecentralize, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(30, Short.MAX_VALUE))
+        );
+
+        scrDecentralizationDetails.setViewportView(pnlDecentralizationDetails);
+
+        javax.swing.GroupLayout roundPanel3Layout = new javax.swing.GroupLayout(roundPanel3);
+        roundPanel3.setLayout(roundPanel3Layout);
+        roundPanel3Layout.setHorizontalGroup(
+            roundPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(scrDecentralizationDetails, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 364, Short.MAX_VALUE)
+        );
+        roundPanel3Layout.setVerticalGroup(
+            roundPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(roundPanel3Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(scrDecentralizationDetails, javax.swing.GroupLayout.DEFAULT_SIZE, 355, Short.MAX_VALUE)
+                .addContainerGap())
+        );
+
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(roundPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(roundPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap())
+        );
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(roundPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(roundPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
+        );
+
+        javax.swing.GroupLayout roundPanel1Layout = new javax.swing.GroupLayout(roundPanel1);
+        roundPanel1.setLayout(roundPanel1Layout);
+        roundPanel1Layout.setHorizontalGroup(
+            roundPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, roundPanel1Layout.createSequentialGroup()
+                .addGroup(roundPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(roundPanel1Layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(roundPanel1Layout.createSequentialGroup()
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(button3, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(button2, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, roundPanel1Layout.createSequentialGroup()
+                        .addGap(42, 42, 42)
+                        .addComponent(btnAdd, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(btnCancel, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(24, 24, 24)))
+                .addContainerGap())
+        );
+        roundPanel1Layout.setVerticalGroup(
+            roundPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, roundPanel1Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(roundPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(button3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(button2, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addGroup(roundPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnAdd, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnCancel, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(22, 22, 22))
+        );
+
+        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
+        getContentPane().setLayout(layout);
+        layout.setHorizontalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(roundPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 408, Short.MAX_VALUE)
+        );
+        layout.setVerticalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(roundPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 601, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 41, Short.MAX_VALUE))
+        );
+
+        pack();
+    }// </editor-fold>//GEN-END:initComponents
+
+    private void btnAddMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnAddMouseClicked
+        dc = new Decentralization();
+        dc.setDecentralizeID(txtDecentralizationID.getText());
+        dc.setDecentralizeName(txtDecentralizationName.getText());
+        dcdt.setDecentralizeID(txtDecentralizationID.getText());
+        dcdt.setIsSale(0); dcdt.setIsDecentralize(0);
+        dcdt.setIsAccount(0);dcdt.setIsBill(0);
+        dcdt.setIsCategory(0);dcdt.setIsCustomer(0);
+        dcdt.setIsDiscount(0);dcdt.setIsProduct(0);
+        dcdt.setIsStaff(0);dcdt.setIsRecept(0);
+        if(cbxSale.isSelected()){
+            if(combbxSale.getSelectedIndex()==0) dcdt.setIsSale(1);
+            else dcdt.setIsSale(2);
+        }
+        if(cbxRecieved.isSelected()){
+            if(combbxReceived.getSelectedIndex()==0) dcdt.setIsRecept(1);
+            else dcdt.setIsRecept(2);
+        }
+        if(cbxProduct.isSelected()){
+            if(combbxProduct.getSelectedIndex()==0) dcdt.setIsProduct(1);
+            else dcdt.setIsProduct(2);
+        }
+        if(cbxCategory.isSelected()){
+            if(combbxCategory.getSelectedIndex()==0) dcdt.setIsCategory(1);
+            else dcdt.setIsCategory(2);
+        }
+        if(cbxBill.isSelected()){
+            if(combbxBill.getSelectedIndex()==0) dcdt.setIsBill(1);
+            else dcdt.setIsBill(2);
+        }
+        if(cbxDiscount.isSelected()){
+            if(combbxDiscount.getSelectedIndex()==0) dcdt.setIsDiscount(1);
+            else dcdt.setIsDiscount(2);
+        }
+        if(cbxCustomer.isSelected()){
+            if(combbxCustomer.getSelectedIndex()==0) dcdt.setIsCustomer(1);
+            else dcdt.setIsCustomer(2);
+        }
+        if(cbxStaff.isSelected()){
+            if(combbxStaff.getSelectedIndex()==0) dcdt.setIsStaff(1);
+            else dcdt.setIsStaff(2);
+        }
+        if(cbxAccount.isSelected()){
+            if(combbxAccount.getSelectedIndex()==0) dcdt.setIsAccount(1);
+            else dcdt.setIsAccount(2);
+        }
+        if(cbxDecentralize.isSelected()){
+            if(combbxDecentralize.getSelectedIndex()==0) dcdt.setIsDecentralize(1);
+            else dcdt.setIsDecentralize(2);
+        }
+        
+        boolean check_Create = dcBUS.check_Decentralization_Exist(txtDecentralizationName.getText(),txtDecentralizationID.getText(),"create");
+        boolean check_Update = dcBUS.check_Decentralization_Exist(txtDecentralizationName.getText(),txtDecentralizationID.getText(),"update");
+        switch(this.action) {
+            case "create":
+                if(check_Create)
+                    if(dcBUS.create(dc) && dcdtBUS.create(dcdt)){
+                        JOptionPane.showMessageDialog(this, "Tạo thành công!", "Thông báo", JOptionPane.INFORMATION_MESSAGE);
+                        this.decentralization_GUI.refesh();
+                        //this.home_GUI.DisableTabsForDecentralize();
+                        this.dispose();
+                    }
+                    else 
+                        JOptionPane.showMessageDialog(this, "Đã có lỗi xảy ra!", "Thông báo", JOptionPane.INFORMATION_MESSAGE);
+                else JOptionPane.showMessageDialog(this, "Tên quyền đã tồn tại!", "Thông báo", JOptionPane.INFORMATION_MESSAGE);
+                break;
+            case "update":
+                if(check_Update)
+                    if(dcBUS.update(dc) && dcdtBUS.update(dcdt)){
+                        JOptionPane.showMessageDialog(this, "Chỉnh sửa thành công!", "Thông báo", JOptionPane.INFORMATION_MESSAGE);
+                        this.decentralization_GUI.refesh();
+                        this.home_GUI.DisableTabsForDecentralize();
+                        if(dcdtBUS.readById(decenId).getIsDecentralize() !=0)
+                            this.home_GUI.set_Background_roundPanel17();
+                        this.dispose();
+                    }  
+                    else 
+                        JOptionPane.showMessageDialog(this, "Đã có lỗi xảy ra!", "Thông báo", JOptionPane.INFORMATION_MESSAGE);
+                else JOptionPane.showMessageDialog(this, "Tên quyền đã tồn tại!", "Thông báo", JOptionPane.INFORMATION_MESSAGE);
+                break;
+            default:
+                    break;
+        }
+    }//GEN-LAST:event_btnAddMouseClicked
+
+    private void btnCancelMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnCancelMouseClicked
+        this.dispose();
+    }//GEN-LAST:event_btnCancelMouseClicked
+
+    private void cbxSaleItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_cbxSaleItemStateChanged
+        combbxSale.setEnabled(evt.getStateChange()==1 ? true:false);
+    }//GEN-LAST:event_cbxSaleItemStateChanged
+
+    private void cbxRecievedItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_cbxRecievedItemStateChanged
+        combbxReceived.setEnabled(evt.getStateChange()==1 ? true:false);
+    }//GEN-LAST:event_cbxRecievedItemStateChanged
+
+    private void cbxProductItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_cbxProductItemStateChanged
+        combbxProduct.setEnabled(evt.getStateChange()==1 ? true:false);
+    }//GEN-LAST:event_cbxProductItemStateChanged
+
+    private void cbxCategoryItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_cbxCategoryItemStateChanged
+        combbxCategory.setEnabled(evt.getStateChange()==1 ? true:false);
+    }//GEN-LAST:event_cbxCategoryItemStateChanged
+
+    private void cbxBillItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_cbxBillItemStateChanged
+        combbxBill.setEnabled(evt.getStateChange()==1 ? true:false);
+    }//GEN-LAST:event_cbxBillItemStateChanged
+
+    private void cbxDiscountItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_cbxDiscountItemStateChanged
+        combbxDiscount.setEnabled(evt.getStateChange()==1 ? true:false);
+    }//GEN-LAST:event_cbxDiscountItemStateChanged
+
+    private void cbxCustomerItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_cbxCustomerItemStateChanged
+        combbxCustomer.setEnabled(evt.getStateChange()==1 ? true:false);
+    }//GEN-LAST:event_cbxCustomerItemStateChanged
+
+    private void cbxStaffItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_cbxStaffItemStateChanged
+        combbxStaff.setEnabled(evt.getStateChange()==1 ? true:false);
+    }//GEN-LAST:event_cbxStaffItemStateChanged
+
+    private void cbxAccountItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_cbxAccountItemStateChanged
+        combbxAccount.setEnabled(evt.getStateChange()==1 ? true:false);
+    }//GEN-LAST:event_cbxAccountItemStateChanged
+
+    private void cbxDecentralizeItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_cbxDecentralizeItemStateChanged
+        combbxDecentralize.setEnabled(evt.getStateChange()==1 ? true:false);
+    }//GEN-LAST:event_cbxDecentralizeItemStateChanged
+
+    private void roundPanel1MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_roundPanel1MousePressed
+        mouseX = evt.getX();
+        mouseY = evt.getY();
+    }//GEN-LAST:event_roundPanel1MousePressed
+
+    private void roundPanel1MouseDragged(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_roundPanel1MouseDragged
+        super.setLocation(super.getX() + evt.getX() - mouseX, super.getY() + evt.getY() - mouseY);
+    }//GEN-LAST:event_roundPanel1MouseDragged
+
+    private void roundPanel2MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_roundPanel2MousePressed
+        mouseX = evt.getX();
+        mouseY = evt.getY();
+    }//GEN-LAST:event_roundPanel2MousePressed
+
+    private void roundPanel2MouseDragged(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_roundPanel2MouseDragged
+        super.setLocation(super.getX() + evt.getX() - mouseX, super.getY() + evt.getY() - mouseY);
+    }//GEN-LAST:event_roundPanel2MouseDragged
+
+    private void roundPanel3MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_roundPanel3MousePressed
+        mouseX = evt.getX();
+        mouseY = evt.getY();
+    }//GEN-LAST:event_roundPanel3MousePressed
+
+    private void roundPanel3MouseDragged(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_roundPanel3MouseDragged
+        super.setLocation(super.getX() + evt.getX() - mouseX, super.getY() + evt.getY() - mouseY);
+    }//GEN-LAST:event_roundPanel3MouseDragged
+
+    private void button3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_button3MouseClicked
+        setState(this.ICONIFIED);
+    }//GEN-LAST:event_button3MouseClicked
+
+    private void button2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_button2MouseClicked
+        this.dispose();
+    }//GEN-LAST:event_button2MouseClicked
+
+    /**
+     * @param args the command line arguments
+     */
+//    public static void main(String args[]) {
+//        /* Set the Nimbus look and feel */
+//        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
+//        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
+//         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
+//         */
+//        try {
+//            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
+//                if ("Nimbus".equals(info.getName())) {
+//                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
+//                    break;
+//                }
+//            }
+//        } catch (ClassNotFoundException ex) {
+//            java.util.logging.Logger.getLogger(DecentralizationDetails_GUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+//        } catch (InstantiationException ex) {
+//            java.util.logging.Logger.getLogger(DecentralizationDetails_GUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+//        } catch (IllegalAccessException ex) {
+//            java.util.logging.Logger.getLogger(DecentralizationDetails_GUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+//        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
+//            java.util.logging.Logger.getLogger(DecentralizationDetails_GUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+//        }
+//        //</editor-fold>
+//
+//        /* Create and display the form */
+//        java.awt.EventQueue.invokeLater(new Runnable() {
+//            public void run() {
+//                new DecentralizationDetails_GUI().setVisible(true);
+//            }
+//        });
+//    }
+
+    // Variables declaration - do not modify//GEN-BEGIN:variables
+    private Custom.Button btnAdd;
+    private Custom.Button btnCancel;
+    private Custom.Button button2;
+    private Custom.Button button3;
+    private javax.swing.JCheckBox cbxAccount;
+    private javax.swing.JCheckBox cbxBill;
+    private javax.swing.JCheckBox cbxCategory;
+    private javax.swing.JCheckBox cbxCustomer;
+    private javax.swing.JCheckBox cbxDecentralize;
+    private javax.swing.JCheckBox cbxDiscount;
+    private javax.swing.JCheckBox cbxProduct;
+    private javax.swing.JCheckBox cbxRecieved;
+    private javax.swing.JCheckBox cbxSale;
+    private javax.swing.JCheckBox cbxStaff;
+    private javax.swing.JComboBox<String> combbxAccount;
+    private javax.swing.JComboBox<String> combbxBill;
+    private javax.swing.JComboBox<String> combbxCategory;
+    private javax.swing.JComboBox<String> combbxCustomer;
+    private javax.swing.JComboBox<String> combbxDecentralize;
+    private javax.swing.JComboBox<String> combbxDiscount;
+    private javax.swing.JComboBox<String> combbxProduct;
+    private javax.swing.JComboBox<String> combbxReceived;
+    private javax.swing.JComboBox<String> combbxSale;
+    private javax.swing.JComboBox<String> combbxStaff;
+    private javax.swing.JPanel jPanel1;
+    private Custom.RoundPanel pnlDecentralizationDetails;
+    private Custom.RoundPanel roundPanel1;
+    private Custom.RoundPanel roundPanel2;
+    private Custom.RoundPanel roundPanel3;
+    private javax.swing.JScrollPane scrDecentralizationDetails;
+    private javax.swing.JTextField txtDecentralizationID;
+    private javax.swing.JTextField txtDecentralizationName;
+    // End of variables declaration//GEN-END:variables
+    private int mouseX,mouseY;
+}
